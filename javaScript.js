@@ -1,3 +1,5 @@
+let currentSelectedRow = 0;
+
 function userInputData() {
   var id1 = document.getElementById('myTable').children.length;
   var name1 = document.getElementById('name').value;
@@ -44,11 +46,10 @@ function addRow(userGivenData) {
   
 }
 
-
 var editTask = (e) => {
   debugger;
   var selectedTask = e.parentElement.parentElement;
-  console.log(selectedTask)
+  currentSelectedRow = e.parentElement.parentElement.id
   document.getElementById("id").value = selectedTask.childNodes[0].innerHTML;
   document.getElementById("name").value = selectedTask.childNodes[1].innerHTML;
   document.getElementById("company").value = selectedTask.childNodes[2].innerHTML;
@@ -65,16 +66,14 @@ var editTask = (e) => {
 // update.addEventListener('click', updateRecord);
 function updateRecord(selectedRow) {
   debugger;
-  console.log(selectedRow);
   var selectedRow = document.querySelectorAll('.row');
-
   var id = document.getElementById("id").value;
   var name = document.getElementById("name").value;
   var company = document.getElementById("company").value;
 
-  selectedRow[0].childNodes[0].innerText = id;
-  selectedRow[0].childNodes[1].innerText = name;
-  selectedRow[0].childNodes[2].innerText = company;
+  selectedRow[currentSelectedRow-1].childNodes[0].innerText = id;
+  selectedRow[currentSelectedRow-1].childNodes[1].innerText = name;
+  selectedRow[currentSelectedRow-1].childNodes[2].innerText = company;
   
   var x = document.getElementById('add');
   x.style.display  ="block";
